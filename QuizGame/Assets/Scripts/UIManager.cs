@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    
     #region Singleton
     public static UIManager instance;
 
@@ -14,10 +15,16 @@ public class UIManager : MonoBehaviour
         instance = this;
     }
     #endregion
-
+    
     [SerializeField]Button[] answersButtons;
     [SerializeField]TextMeshProUGUI questionText;
-
+    [SerializeField] GameObject menuWindow;
+    [SerializeField] Button startButton;
+    [SerializeField] TMP_Dropdown difficultyDropdown, themeDropdown;
+    public void Start()
+    {
+        startButton.onClick.AddListener(() => GameManeger.instance.startGame(difficultyDropdown.value,themeDropdown.value)) ;
+    }
     public void UpdateQuestion(Quiz quizSelected)
     {
         questionText.text = quizSelected.Question;
@@ -26,7 +33,11 @@ public class UIManager : MonoBehaviour
         {
             answersButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = quizSelected.Answers[i];
         }
+       
     }
-
+   public void SetMenu(bool active)
+    {
+        menuWindow.SetActive(active);
+    }
 
 }

@@ -20,7 +20,7 @@ public class QuizManager : MonoBehaviour
         }
         else
         {
-            SelectQuiz(themeSelected, dificultySelected);
+            SelectQuiz(themeSelected, dificultySelected);   
         }
     }
 
